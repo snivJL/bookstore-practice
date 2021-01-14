@@ -1,0 +1,69 @@
+/* Styling for the search box (excluding buttons) */
+#searchBox {
+  width: 800px;
+  min-width: 300px;
+  height: 38px;
+  border: 0.5px solid rgb(206, 212, 218);
+  border-radius: 3px;
+  padding-left: 10px;
+  background-color: rgb(248, 249, 250);
+}
+
+#searchBox:focus {
+  outline: auto 2px rgb(224, 224, 224);
+  background-color: white;
+}
+
+#minilogo {
+  height: 28px;
+  margin-right: 10px;
+}
+
+/* Styling for the search button */
+#searchButton {
+  vertical-align: baseline;
+  margin-left: 10px;
+  color: #d64540;
+  border-color: #d64540;
+}
+
+#searchButton:hover {
+  color: white;
+}
+
+.btn-outline-success:hover {
+  background-color: #d64540;
+}
+
+.btn-outline-success:focus {
+  box-shadow: 0 0 0 0.2rem #ce5450;
+}
+
+/* Making the grey text in the search box italic */
+#searchBox::-webkit-input-placeholder {
+  font-style: italic;
+}
+#searchBox:-moz-placeholder {
+  font-style: italic;
+}
+#searchBox::-moz-placeholder {
+  font-style: italic;
+}
+#searchBox:-ms-input-placeholder {
+  font-style: italic;
+}
+
+/* Center the search bar */
+#searchArea {
+  justify-content: center;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+#title {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
