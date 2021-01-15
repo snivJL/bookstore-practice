@@ -1,7 +1,7 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { Container, Card, Row, Col, Button } from "react-bootstrap";
+import { Container, Card, Row, Col, Button, Spinner } from "react-bootstrap";
 import "./bookdetailpage.css";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -85,7 +85,7 @@ const BookDetailPage = () => {
   return (
     <div>
       {loading ? (
-        <h1>Loading</h1>
+        <Spinner animation="grow" variant="primary" />
       ) : (
         <Container>
           <Card

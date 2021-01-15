@@ -2,6 +2,7 @@ import React from "react";
 import SearchForm from "../components/SearchForm";
 import { useEffect, useState } from "react";
 import BookList from "../components/BookList";
+import { Spinner } from "react-bootstrap";
 
 const HomePage = () => {
   const totalPageNum = 10;
@@ -58,7 +59,11 @@ const HomePage = () => {
       />
 
       {loading ? (
-        <h1>Loading</h1>
+        <Spinner
+          animation="grow"
+          variant="primary"
+          className="justify-content-md-center"
+        />
       ) : books !== null ? (
         <BookList
           getPageNum={getPageNum}
