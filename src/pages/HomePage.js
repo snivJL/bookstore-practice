@@ -29,12 +29,10 @@ const HomePage = () => {
           query !== ""
             ? `${process.env.REACT_APP_BACKEND_API}/books?_page=${pageNum}&_limit=${limit}&q=${query}`
             : `${process.env.REACT_APP_BACKEND_API}/books?_page=${pageNum}&_limit=${limit}`;
-        console.log(url);
         const res = await fetch(url);
         const data = await res.json();
 
         if (res.ok) {
-          console.log(data);
           setBooks(data);
         } else {
           setErrorMsg(`FETCH BOOKS ERROR: ${data.message}`);
@@ -52,7 +50,6 @@ const HomePage = () => {
   const getPageNum = (pageNumber) => {
     setPageNum(pageNumber);
   };
-  console.log(searchInput);
   return (
     <div>
       <SearchForm

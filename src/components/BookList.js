@@ -4,25 +4,9 @@ import PaginationBar from "../components/PaginationBar";
 import { Link } from "react-router-dom";
 
 const BookList = ({ getPageNum, limit, totalPageNum, books }) => {
-  const requestOptions = {
-    method: "PUT",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(books[0]),
-  };
-  const addToFavorite = async () => {
-    try {
-      const url = `${process.env.REACT_APP_BACKEND_API}/favorites`;
-      const res = await fetch(url, requestOptions);
-      const data = await res.json();
-      console.log(data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
   return (
     <Container>
-      <Row>
+      <Row className="justify-content-md-center">
         <PaginationBar
           pageCount={totalPageNum}
           pageRangeDisplayed={limit}
@@ -30,10 +14,10 @@ const BookList = ({ getPageNum, limit, totalPageNum, books }) => {
         />
       </Row>
       <Row>
-        <CardDeck>
+        <CardDeck style={{ width: "100%" }}>
           {books.map((book) => (
-            <Col xs={3}>
-              <Link to={`books/${book.id}`}>
+            <Col lg={3}>
+              <Link to={`books/${book.id}`} books={books}>
                 <Card>
                   <Card.Img variant="top" src={`/${book.imageLink}`} />
                   <Card.Body>
@@ -41,9 +25,6 @@ const BookList = ({ getPageNum, limit, totalPageNum, books }) => {
                     <Card.Text>
                       <small className="text-muted">{`@${book.author}`}</small>
                     </Card.Text>
-                    <button type="button" onClick={addToFavorite}>
-                      Favorite
-                    </button>
                   </Card.Body>
                 </Card>
               </Link>
