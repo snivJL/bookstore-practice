@@ -3,6 +3,8 @@ import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { Container, Card, Row, Col, Button } from "react-bootstrap";
 import "./bookdetailpage.css";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const BookDetailPage = () => {
   const [errorMsg, setErrorMsg] = useState("");
@@ -25,6 +27,8 @@ const BookDetailPage = () => {
         const url = `${process.env.REACT_APP_BACKEND_API}/favorites`;
         const res = await fetch(url, requestOptions);
         const data = await res.json();
+        toast.success("Added to favorite!");
+        setIsFavorite(true);
       } catch (error) {
         console.log(error);
       }
@@ -33,15 +37,21 @@ const BookDetailPage = () => {
         "URL",
         `${process.env.REACT_APP_BACKEND_API}/favorites/${id}`
       );
-      const response = await fetch(
-        `${process.env.REACT_APP_BACKEND_API}/favorites/${id}`,
-        {
-          method: "DELETE",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
+      try {
+        const response = await fetch(
+          `${process.env.REACT_APP_BACKEND_API}/favorites/${id}`,
+          {
+            method: "DELETE",
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
+        toast.error("Removed from favorite!");
+        setIsFavorite(false);
+      } catch (error) {
+        console.log(error);
+      }
     }
   };
 
@@ -71,7 +81,7 @@ const BookDetailPage = () => {
       setLoading(false);
     };
     fetchData(id);
-  }, [isFavorite]);
+  }, []);
   return (
     <div>
       {loading ? (
@@ -92,6 +102,7 @@ const BookDetailPage = () => {
               </Col>
               <Col>
                 <Card.Body>
+                  <ToastContainer />
                   <Card.Text className="book-title">{book.title}</Card.Text>
                   <Card.Text>
                     <strong>Author: </strong>
